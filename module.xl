@@ -26,7 +26,33 @@ dc_time := -1.0
 
 //
 
-digital_clock cX:real, cY:real, cW:real ->
+digital_clock cX:real, cY:real, cH:real ->
+    /** Shows a digital clock with specified size and position.
+     module.DigitalClock
+     Draws a digital clock centered at (@a cX, @a cY) and z=0.
+     By default, the clock shows the current local time. You can display
+     the time for any other date by setting @ref dc_time accordingly. Note
+     however that dc_time is always shown in local time format. \n
+     The digits are similar in shape with those of real digital clocks
+     with LED, VFD or LCD displays: they are made of 7 segments that are
+     either on or off. The color for each state is configurable with
+     @ref dc_segment_color_on and @ref dc_segment_color_off, the background
+     being controlled by @ref dc_background_color.@n
+     The clock has a number of other configuration options. You can
+     show or hide the leading zero for the hours display (@ref
+     dc_hours_leading_zero); you can change the format to hours:minutes or
+     hours:minutes:seconds (@ref dc_show_seconds). You can even select how
+     6 and 9 and drawn (with or without a horizontal bar), thanks to
+     @ref dc_hbar_6_9.@n
+     Currently, only the 24-hour format is supported. You cannot switch to
+     the AM/PM format.
+     @param cX x coordinate of the clock's center
+     @param cY y coordinate of the clock's center
+     @param cH the clock's height. The width is 2.86555 * @a cH when the
+     clock shows only hours and minutes, and 4.5042 * @a cH when seconds
+     are enabled.
+     **/
+    nil
 
     // Horizontal segment width
     w -> 76
@@ -236,8 +262,8 @@ digital_clock cX:real, cY:real, cW:real ->
         clock_w := nb * (W + D) + D
         clock_h := H + 2 * D
         translate cX, cY, 0.0
-        if cW <> 0.0 then
-            scale cW/clock_w, cW/clock_w, 1.0
+        if cH <> 0.0 then
+            scale cH/clock_h, cH/clock_h, 1.0
         color dc_background_color
         rounded_rectangle clock_cx, clock_cy, clock_w, clock_h, D
         translate -clock_w / 2 + W/2 + D, 0, 0
@@ -257,5 +283,14 @@ digital_clock cX:real, cY:real, cW:real ->
                 next_pos
                 display clock_seconds
 
-digital_clock x, y -> digital_clock x, y, 0
-digital_clock -> digital_clock 0, 0
+digital_clock x, y ->
+    /** Shows a digital clock of height 238 px at (@a x, @a y).
+     module.DigitalClock
+     **/
+    digital_clock x, y, 0
+
+digital_clock ->
+    /** Shows a digital clock of height 238 px at (0, 0).
+     module.DigitalClock
+     **/
+    digital_clock 0, 0
