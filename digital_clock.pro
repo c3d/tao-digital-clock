@@ -17,7 +17,7 @@ MODINSTDIR = digital_clock
 
 include(../modules.pri)
 
-OTHER_FILES = module.xl
+OTHER_FILES = module.xl module.doxy.h
 
 INSTALLS    += thismod_icon
 INSTALLS    -= thismod_bin
