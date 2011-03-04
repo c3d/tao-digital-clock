@@ -12,13 +12,13 @@
  * to display the time like a traditional alarm clock does.
  *
  * For example, the following document will show a nice clock 40 pixels high:
- @verbatim
+ @code
 // digitalclock.ddd
 
 import DigitalClock "0.1"
 
 digital_clock 0, 0, 40
- @endverbatim
+ @endcode
  *
  * @image html digitalclock.png "Output of digitalclock.ddd"
  * @{
