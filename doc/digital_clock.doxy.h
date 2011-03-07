@@ -11,16 +11,12 @@
  * You can use the Digital Clock module in your presentation if you want
  * to display the time like a traditional alarm clock does.
  *
- * For example, the following document will show a nice clock 40 pixels high:
- @code
-// digitalclock.ddd
-
-import DigitalClock "0.1"
-
-digital_clock 0, 0, 40
- @endcode
+ * For example, the following document
+ * (<a href="examples/fonts.ddd">fonts.ddd</a>) will show a nice clock
+ * 40 pixels high:
+ * @include digital_clock.ddd
  *
- * @image html digitalclock.png "Output of digitalclock.ddd"
+ * @image html digital_clock.png "Output of digital_clock.ddd"
  * @{
  */
 
