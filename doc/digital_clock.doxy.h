@@ -1,3 +1,7 @@
+/*
+ * This file duplicates module.xl for documentation purposes.
+ */
+
 /**
  * @defgroup DigitalClock Digital Clock
  * @ingroup Modules
@@ -8,7 +12,7 @@
  * to display the time like a traditional alarm clock does.
  *
  * For example, the following document
- * (<a href="examples/digital_clock.ddd">digital_clock.ddd</a>) will show a nice clock
+ * (<a href="examples/fonts.ddd">fonts.ddd</a>) will show a nice clock
  * 40 pixels high:
  * @include digital_clock.ddd
  *
@@ -43,16 +47,16 @@ text dc_background_color  = "#003366";
 text dc_hbar_6_9          = "off";
 /**
  * Whether or not to display the hour with a leading zero
- *   @li @c "true"  Display a leading zero
- *   @li @c "false" Do not display a leading zero
+ *   @li @c true  Display a leading zero
+ *   @li @c false Do not display a leading zero
  */
-text dc_hours_leading_zero = "false";
+boolean dc_hours_leading_zero = false;
 /**
  * Whether or not the clock displays seconds
- *   @li @c "true"  Display hours, minutes and seconds
- *   @li @c "false" Display hours and minutes only
+ *   @li @c true  Display hours, minutes and seconds
+ *   @li @c false Display hours and minutes only
  */
-text dc_show_seconds = "false";
+boolean dc_show_seconds = false;
 /**
  * The time to display
  * If @ref dc_time is -1.0, use current time. Otherwise, @ref dc_time is

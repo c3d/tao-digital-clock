@@ -7,8 +7,8 @@
 # A digital clock with 7-segment digits
 #
 # ******************************************************************************
-# This software is property of Taodyne SAS - Confidential
-# Ce logiciel est la propriété de Taodyne SAS - Confidentiel
+# This document is released under the GNU General Public License.
+# See http://www.gnu.org/copyleft/gpl.html and Matthew 25:22 for details
 # (C) 2010 Jerome Forissier <jerome@taodyne.com>
 # (C) 2010 Taodyne SAS
 # ******************************************************************************
@@ -17,7 +17,7 @@ MODINSTDIR = digital_clock
 
 include(../modules.pri)
 
-OTHER_FILES = digital_clock.xl
+OTHER_FILES = module.xl module.doxy.h
 
 INSTALLS    += thismod_icon
 INSTALLS    -= thismod_bin

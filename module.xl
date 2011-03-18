@@ -7,37 +7,24 @@
 module_description
     id "9F07701F-AA06-491F-BFCB-87A513C21897"
     name "Digital clock"
-    description "A digital clock with 7-segment digits."
+    description "A digital clock with 7-segment digits"
     import_name "DigitalClock"
-    author "Taodyne SAS"
-    website "http://www.taodyne.com"
-    version 1.0
-
-module_description "fr",
-    name "Horloge numérique"
-    description "Une horloge numérique avec un affichage sous forme de chiffres à 7 segments."
+    version "0.1"
 
 //
 // Settings
 //
 
-dc_segment_color_on   -> "#229988"
-dc_segment_color_off  -> "#004477"
-dc_background_color   -> "#003366"
-dc_hbar_6_9           -> "off"
-dc_hours_leading_zero -> "false"
-dc_show_seconds       -> "false"
+dc_segment_color_on  := "#229988"
+dc_segment_color_off := "#004477"
+dc_background_color  := "#003366"
+dc_hbar_6_9          := "off"
+dc_hours_leading_zero := false
+dc_show_seconds := false
 // The time to display (POSIX time). -1.0 to use current time.
-dc_time -> 0.0
 dc_time := -1.0
 
 //
-
-digital_clock ->
-    digital_clock 0, 0
-
-digital_clock X:real, Y:real ->
-    digital_clock X, Y, 0
 
 digital_clock cX:real, cY:real, cH:real ->
     /** Shows a digital clock with specified size and position.
@@ -239,24 +226,24 @@ digital_clock cX:real, cY:real, cH:real ->
     next_pos n ->
         translate n * (W + D) , 0, 0
 
-    display n:integer, leading_zero:text ->
+    next_pos -> next_pos 1
+
+    display n:integer, leading_zero:boolean ->
         locally
-            a0 -> 0
-            a1 -> 0
             a0 := n mod 10
             a1 := n / 10
-            if a1 <> 0 or leading_zero = "true" then
+            if a1 <> 0 or leading_zero then
                 digit a1
             else
                 digit "off"
-            next_pos 1
+            next_pos
             digit a0
 
-    display n:integer -> display n, "true"
+    display n:integer -> display n, true
 
     display ":" ->
         locally
-            r -> 0.8 * D
+            r := 0.8 * D
             color "on"
             ellipse 0, w / 2, r, r
             ellipse 0, -w / 2, r, r
@@ -269,11 +256,11 @@ digital_clock cX:real, cY:real, cH:real ->
     locally
         clock_cx -> 0
         clock_cy -> 0
-        nb -> 5
-        if dc_show_seconds = "true" then
+        nb := 5
+        if dc_show_seconds then
             nb := 8
-        clock_w -> nb * (W + D) + D
-        clock_h -> H + 2 * D
+        clock_w := nb * (W + D) + D
+        clock_h := H + 2 * D
         translate cX, cY, 0.0
         if cH <> 0.0 then
             scale cH/clock_h, cH/clock_h, 1.0
@@ -285,11 +272,25 @@ digital_clock cX:real, cY:real, cH:real ->
         next_pos 2
         locally
             display ":"
-            next_pos 1
+            next_pos
             display clock_minutes
         next_pos 3
+        // FIXME
+        dc_show_seconds2 := dc_show_seconds
         locally
-            if dc_show_seconds = "true" then
+            if dc_show_seconds2 then
                 display ":"
-                next_pos 1
+                next_pos
                 display clock_seconds
+
+digital_clock x, y ->
+    /** Shows a digital clock of height 238 px at (@a x, @a y).
+     module.DigitalClock
+     **/
+    digital_clock x, y, 0
+
+digital_clock ->
+    /** Shows a digital clock of height 238 px at (0, 0).
+     module.DigitalClock
+     **/
+    digital_clock 0, 0
