@@ -9,7 +9,7 @@ module_description
     name "Digital clock"
     description "A digital clock with 7-segment digits"
     import_name "DigitalClock"
-    version "0.1"
+    version 1.0
 
 //
 // Settings
