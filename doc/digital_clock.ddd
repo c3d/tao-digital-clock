@@ -1,6 +1,6 @@
 // digital_clock.ddd
 
-import DigitalClock "0.1"
+import DigitalClock 1.0
 
 digital_clock 0, 0, 40
 
