@@ -47,16 +47,16 @@ text dc_background_color  = "#003366";
 text dc_hbar_6_9          = "off";
 /**
  * Whether or not to display the hour with a leading zero
- *   @li @c true  Display a leading zero
- *   @li @c false Do not display a leading zero
+ *   @li @c "true"  Display a leading zero
+ *   @li @c "false" Do not display a leading zero
  */
-boolean dc_hours_leading_zero = false;
+text dc_hours_leading_zero = "false";
 /**
  * Whether or not the clock displays seconds
- *   @li @c true  Display hours, minutes and seconds
- *   @li @c false Display hours and minutes only
+ *   @li @c "true"  Display hours, minutes and seconds
+ *   @li @c "false" Display hours and minutes only
  */
-boolean dc_show_seconds = false;
+text dc_show_seconds = "false";
 /**
  * The time to display
  * If @ref dc_time is -1.0, use current time. Otherwise, @ref dc_time is
