@@ -8,7 +8,7 @@
  * to display the time like a traditional alarm clock does.
  *
  * For example, the following document
- * (<a href="examples/digital_clock.ddd">digital_clock.ddd</a>) will show a nice clock
+ * (<a href="examples/fonts.ddd">fonts.ddd</a>) will show a nice clock
  * 40 pixels high:
  * @include digital_clock.ddd
  *
