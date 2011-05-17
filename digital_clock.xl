@@ -7,15 +7,9 @@
 module_description
     id "9F07701F-AA06-491F-BFCB-87A513C21897"
     name "Digital clock"
-    description "A digital clock with 7-segment digits."
+    description "A digital clock with 7-segment digits"
     import_name "DigitalClock"
-    author "Taodyne SAS"
-    website "http://www.taodyne.com"
     version 1.0
-
-module_description "fr",
-    name "Horloge numérique"
-    description "Une horloge numérique avec un affichage sous forme de chiffres à 7 segments."
 
 //
 // Settings
