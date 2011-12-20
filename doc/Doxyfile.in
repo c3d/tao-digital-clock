@@ -1,5 +1,0 @@
-@INCLUDE = ../../Doxyfile
-PROJECT_NAME = \"Digital Clock\"
-PROJECT_NUMBER = 1.002
-QHP_NAMESPACE = com.taodyne.TaoPresentations.modules.DigitalClock.1.002
-QHP_VIRTUAL_FOLDER = DigitalClock
