@@ -21,3 +21,7 @@ OTHER_FILES = digital_clock.xl
 
 INSTALLS    += thismod_icon
 INSTALLS    -= thismod_bin
+
+QMAKE_SUBSTITUTES = doc/Doxyfile.in
+DOXYFILE = doc/Doxyfile
+include(../modules_doc.pri)
