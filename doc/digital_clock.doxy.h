@@ -1,6 +1,5 @@
 /**
- * @defgroup DigitalClock Digital Clock
- * @ingroup Modules
+ * @taomoduledescription{DigitalClock, Digital Clock}
  *
  * Shows a digital clock.
  *
@@ -13,6 +12,7 @@
  * @include digital_clock.ddd
  *
  * @image html digital_clock.png "Output of digital_clock.ddd"
+ * @endtaomoduledescription{DigitalClock}
  * @{
  */
 
