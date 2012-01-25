@@ -20,7 +20,7 @@
  * Affiche une horloge numérique.
  *
  * Ce module vous permet d'afficher l'heure dans votre présentation sous une
- * forme qui reseemble à une pendule numérique LCD ou à LED.
+ * forme qui ressemble à une pendule numérique LCD ou à LED.
  *
  * Par exemple, le document qui suit affiche une horloge de 40 pixels de haut :
  * @include digital_clock.ddd
