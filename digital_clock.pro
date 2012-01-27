@@ -17,10 +17,16 @@ MODINSTDIR = digital_clock
 
 include(../modules.pri)
 
-OTHER_FILES = digital_clock.xl
+OTHER_FILES = digital_clock.xl digital_clock2.xl
+
+CRYPT_XL_SOURCES = digital_clock2.xl
+include(../crypt_xl.pri)
 
 INSTALLS    += thismod_icon
 INSTALLS    -= thismod_bin
+
+LICENSE_FILES = digital_clock.taokey.notsigned
+include(../licenses.pri)
 
 QMAKE_SUBSTITUTES = doc/Doxyfile.in
 DOXYFILE = doc/Doxyfile
