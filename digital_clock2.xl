@@ -1,0 +1,310 @@
+// ****************************************************************************
+//  digital_clock2.xl                                               Tao project
+// ****************************************************************************
+//
+//   File Description:
+//
+//    Show a digital clock
+//
+//
+//
+//
+//
+//
+//
+//
+// ****************************************************************************
+// This document is released under the GNU General Public License.
+// See http://www.gnu.org/copyleft/gpl.html and Matthew 25:22 for details
+//  (C) 2011 Christophe de Dinechin <christophe@taodyne.com>
+//  (C) 2011 Jérôme Forissier <jerome@taodyne.com>
+//  (C) 2011 Catherine Burvelle <cathy@taodyne.com>
+//  (C) 2011 Taodyne SAS
+// ****************************************************************************
+
+license_ok ->
+    if check_license ("DigitalClock 1.0", false) then
+        true
+    else
+        if blink (1.0, 1.0, 300.0) then
+           true
+        else
+           false
+
+//
+// Settings
+//
+
+dc_segment_color_on   -> "#229988"
+dc_segment_color_off  -> "#004477"
+dc_background_color   -> "#003366"
+dc_hbar_6_9           -> "off"
+dc_hours_leading_zero -> "false"
+dc_show_seconds       -> "false"
+// The time to display (POSIX time). -1.0 to use current time.
+dc_time -> 0.0
+dc_time := -1.0
+
+//
+
+digital_clock ->
+    digital_clock 0, 0
+
+digital_clock X:real, Y:real ->
+    digital_clock X, Y, 0
+
+digital_clock cX:real, cY:real, cH:real ->
+    /** Shows a digital clock with specified size and position.
+     module.DigitalClock
+     Draws a digital clock centered at (@a cX, @a cY) and z=0.
+     By default, the clock shows the current local time. You can display
+     the time for any other date by setting @ref dc_time accordingly. Note
+     however that dc_time is always shown in local time format. \n
+     The digits are similar in shape with those of real digital clocks
+     with LED, VFD or LCD displays: they are made of 7 segments that are
+     either on or off. The color for each state is configurable with
+     @ref dc_segment_color_on and @ref dc_segment_color_off, the background
+     being controlled by @ref dc_background_color.@n
+     The clock has a number of other configuration options. You can
+     show or hide the leading zero for the hours display (@ref
+     dc_hours_leading_zero); you can change the format to hours:minutes or
+     hours:minutes:seconds (@ref dc_show_seconds). You can even select how
+     6 and 9 and drawn (with or without a horizontal bar), thanks to
+     @ref dc_hbar_6_9.@n
+     Currently, only the 24-hour format is supported. You cannot switch to
+     the AM/PM format.
+     @param cX x coordinate of the clock's center
+     @param cY y coordinate of the clock's center
+     @param cH the clock's height. The width is 2.86555 * @a cH when the
+     clock shows only hours and minutes, and 4.5042 * @a cH when seconds
+     are enabled.
+     **/
+    nil
+
+    // Horizontal segment width
+    w -> 76
+    // Horizontal segment height
+    h -> 16
+    // Vertical/horizontal segment spacing
+    d -> 3
+    // Digit width
+    W -> w + h + 2 * d
+    // Digit height
+    H -> h + 2 * (w + d)
+    // Digit spacing
+    D -> 2 * h
+
+    color "on" -> color dc_segment_color_on
+    color "off" -> color dc_segment_color_off
+    segment "G" on_off ->
+        locally
+            translate -w / 2, -h / 2, 0
+            color on_off
+            path
+                move_to h / 2, 0, 0
+                line_to w - h / 2, 0, 0
+                line_to w, h / 2, 0
+                line_to w - h / 2, h, 0
+                line_to h / 2, h, 0
+                line_to 0, h / 2, 0
+                line_to h / 2, 0, 0
+
+    segment "B" on_off ->
+        locally
+            translate w / 2 + d, w / 2 + d, 0
+            rotatez 90
+            segment "G" on_off
+
+    segment "A" on_off ->
+        locally
+            translate 0, w + 2 * d, 0
+            segment "G" on_off
+
+    segment "D" on_off ->
+        locally
+            translate 0, -w - 2 * d, 0
+            segment "G" on_off
+
+    segment "C" on_off ->
+        locally
+            translate 0, -w - 2 * d, 0
+            segment "B" on_off
+
+    segment "E" on_off ->
+        locally
+            translate -w - 2 * d, 0, 0
+            segment "C" on_off
+
+    segment "F" on_off ->
+        locally
+            translate -w - 2 * d, 0, 0
+            segment "B" on_off
+
+    digit "off" ->
+        locally
+            segment "A" "off"
+            segment "B" "off"
+            segment "C" "off"
+            segment "D" "off"
+            segment "E" "off"
+            segment "F" "off"
+            segment "G" "off"
+
+    digit 0 ->
+        locally
+            segment "A" "on"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" "on"
+            segment "E" "on"
+            segment "F" "on"
+            segment "G" "off"
+
+    digit 1 ->
+        locally
+            segment "A" "off"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" "off"
+            segment "E" "off"
+            segment "F" "off"
+            segment "G" "off"
+
+    digit 2 ->
+        locally
+            segment "A" "on"
+            segment "B" "on"
+            segment "C" "off"
+            segment "D" "on"
+            segment "E" "on"
+            segment "F" "off"
+            segment "G" "on"
+
+    digit 3 ->
+        locally
+            segment "A" "on"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" "on"
+            segment "E" "off"
+            segment "F" "off"
+            segment "G" "on"
+
+    digit 4 ->
+        locally
+            segment "A" "off"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" "off"
+            segment "E" "off"
+            segment "F" "on"
+            segment "G" "on"
+
+    digit 5 ->
+        locally
+            segment "A" "on"
+            segment "B" "off"
+            segment "C" "on"
+            segment "D" "on"
+            segment "E" "off"
+            segment "F" "on"
+            segment "G" "on"
+
+    digit 6 ->
+        locally
+            segment "A" dc_hbar_6_9
+            segment "B" "off"
+            segment "C" "on"
+            segment "D" "on"
+            segment "E" "on"
+            segment "F" "on"
+            segment "G" "on"
+
+    digit 7 ->
+        locally
+            segment "A" "on"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" "off"
+            segment "E" "off"
+            segment "F" "off"
+            segment "G" "off"
+
+    digit 8 ->
+        locally
+            segment "A" "on"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" "on"
+            segment "E" "on"
+            segment "F" "on"
+            segment "G" "on"
+
+    digit 9 ->
+        locally
+            segment "A" "on"
+            segment "B" "on"
+            segment "C" "on"
+            segment "D" dc_hbar_6_9
+            segment "E" "off"
+            segment "F" "on"
+            segment "G" "on"
+
+    next_pos n ->
+        translate n * (W + D) , 0, 0
+
+    display n:integer, leading_zero:text ->
+        locally
+            a0 -> 0
+            a1 -> 0
+            a0 := n mod 10
+            a1 := n / 10
+            if a1 <> 0 or leading_zero = "true" then
+                digit a1
+            else
+                digit "off"
+            next_pos 1
+            digit a0
+
+    display n:integer -> display n, "true"
+
+    display ":" ->
+        locally
+            r -> 0.8 * D
+            color "on"
+            ellipse 0, w / 2, r, r
+            ellipse 0, -w / 2, r, r
+
+    clock_time -> if dc_time = -1.0 then time else dc_time
+    clock_seconds -> seconds clock_time
+    clock_minutes -> minutes clock_time
+    clock_hours -> hours clock_time
+
+    if license_ok then
+        locally
+            clock_cx -> 0
+            clock_cy -> 0
+            nb -> 5
+            if dc_show_seconds = "true" then
+                nb := 8
+            clock_w -> nb * (W + D) + D
+            clock_h -> H + 2 * D
+            translate cX, cY, 0.0
+            if cH <> 0.0 then
+                scale cH/clock_h, cH/clock_h, 1.0
+            color dc_background_color
+            rounded_rectangle clock_cx, clock_cy, clock_w, clock_h, D
+            translate -clock_w / 2 + W/2 + D, 0, 0
+            locally
+                display clock_hours, dc_hours_leading_zero
+            next_pos 2
+            locally
+                display ":"
+                next_pos 1
+                display clock_minutes
+            next_pos 3
+            locally
+                if dc_show_seconds = "true" then
+                    display ":"
+                    next_pos 1
+                    display clock_seconds
