@@ -11,7 +11,7 @@
  * 40 pixels high:
  * @include digital_clock.ddd
  *
- * @image html digital_clock.png "Output of digital_clock.ddd"
+ * @image html digital_clock.png "Digital clock"
  * @endtaomoduledescription{DigitalClock}
  *
  * @~french
