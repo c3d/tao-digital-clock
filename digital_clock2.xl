@@ -22,9 +22,14 @@
 //  (C) 2011 Taodyne SAS
 // ****************************************************************************
 
-license_check -> check_impress_or_license "DigitalClock 1.004"
-
-
+license_ok ->
+    if check_impress_or_license "DigitalClock 1.0" then
+        true
+    else
+        if blink (1.0, 1.0, 300.0) then
+           true
+        else
+           false
 
 //
 // Settings
@@ -275,31 +280,31 @@ digital_clock cX:real, cY:real, cH:real ->
     clock_minutes -> minutes clock_time
     clock_hours -> hours clock_time
 
-    license_check
-    locally
-        clock_cx -> 0
-        clock_cy -> 0
-        nb -> 5
-        if dc_show_seconds = "true" then
-            nb := 8
-        clock_w -> nb * (W + D) + D
-        clock_h -> H + 2 * D
-        translate cX, cY, 0.0
-        if cH <> 0.0 then
-            scale cH/clock_h, cH/clock_h, 1.0
-        color dc_background_color
-        rounded_rectangle clock_cx, clock_cy, clock_w, clock_h, D
-        translate -clock_w / 2 + W/2 + D, 0, 0
+    if license_ok then
         locally
-            display clock_hours, dc_hours_leading_zero
-        next_pos 2
-        locally
-            display ":"
-            next_pos 1
-            display clock_minutes
-        next_pos 3
-        locally
+            clock_cx -> 0
+            clock_cy -> 0
+            nb -> 5
             if dc_show_seconds = "true" then
+                nb := 8
+            clock_w -> nb * (W + D) + D
+            clock_h -> H + 2 * D
+            translate cX, cY, 0.0
+            if cH <> 0.0 then
+                scale cH/clock_h, cH/clock_h, 1.0
+            color dc_background_color
+            rounded_rectangle clock_cx, clock_cy, clock_w, clock_h, D
+            translate -clock_w / 2 + W/2 + D, 0, 0
+            locally
+                display clock_hours, dc_hours_leading_zero
+            next_pos 2
+            locally
                 display ":"
                 next_pos 1
-                display clock_seconds
+                display clock_minutes
+            next_pos 3
+            locally
+                if dc_show_seconds = "true" then
+                    display ":"
+                    next_pos 1
+                    display clock_seconds
