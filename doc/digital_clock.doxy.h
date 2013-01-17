@@ -2,7 +2,7 @@
  * @~english
  * @taomoduledescription{DigitalClock, Digital Clock}
  *
- * Shows a digital clock.
+ * <tt>import DigitalClock</tt> - Shows a digital clock.
  *
  * You can use the Digital Clock module in your presentation if you want
  * to display the time like a traditional alarm clock does.
@@ -17,7 +17,7 @@
  * @~french
  * @taomoduledescription{DigitalClock, Horloge Numérique}
  *
- * Affiche une horloge numérique.
+ * <tt>import DigitalClock</tt> - Affiche une horloge numérique.
  *
  * Ce module vous permet d'afficher l'heure dans votre présentation sous une
  * forme qui ressemble à une pendule numérique LCD ou à LED.
