@@ -22,6 +22,9 @@
 //  (C) 2011 Taodyne SAS
 // ****************************************************************************
 
+license_check -> check_impress_or_license "DigitalClock 1.005"
+
+
 
 //
 // Settings
@@ -272,6 +275,7 @@ digital_clock cX:real, cY:real, cH:real ->
     clock_minutes -> minutes clock_time
     clock_hours -> hours clock_time
 
+    license_check
     locally
         clock_cx -> 0
         clock_cy -> 0
