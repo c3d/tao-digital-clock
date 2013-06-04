@@ -25,9 +25,6 @@ include(../crypt_xl.pri)
 INSTALLS    += thismod_icon
 INSTALLS    -= thismod_bin
 
-LICENSE_FILES = digital_clock.taokey.notsigned
-include(../licenses.pri)
-
 QMAKE_SUBSTITUTES = doc/Doxyfile.in
 DOXYFILE = doc/Doxyfile
 DOXYLANG = en,fr
