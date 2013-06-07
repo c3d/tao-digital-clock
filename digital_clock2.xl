@@ -33,9 +33,8 @@ dc_background_color   -> "#003366"
 dc_hbar_6_9           -> "off"
 dc_hours_leading_zero -> "false"
 dc_show_seconds       -> "false"
-// The time to display (POSIX time). -1.0 to use current time.
+// The time to display (POSIX time). 0.0 to use current time.
 dc_time -> 0.0
-dc_time := -1.0
 
 //
 
@@ -267,7 +266,7 @@ digital_clock cX:real, cY:real, cH:real ->
             ellipse 0, w / 2, r, r
             ellipse 0, -w / 2, r, r
 
-    clock_time -> if dc_time = -1.0 then time else dc_time
+    clock_time -> if dc_time <= 0.0 then time else dc_time
     clock_seconds -> seconds clock_time
     clock_minutes -> minutes clock_time
     clock_hours -> hours clock_time
